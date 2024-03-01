@@ -1,20 +1,37 @@
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
+
 
 namespace reNumberClash.Hubs
 {
     public class GameHub : Hub
     {
+
+        public async Task SendUsername(string username)
+        {
+            Console.WriteLine($"Received username: {username}");
+        }
+        private static readonly List<string> ConnectedUsers = new List<string>();
+
         public override Task OnConnectedAsync()
         {
-            // Logic to handle when a client connects to the hub
+            string connectionId = Context.ConnectionId;
+            ConnectedUsers.Add(connectionId);
+
+            Console.WriteLine("Connected: " + connectionId);
+            Console.WriteLine("Total connected users: " + ConnectedUsers.Count);
+            
+
             return base.OnConnectedAsync();
         }
-        public override Task OnDisconnectedAsync(Exception? exception)
-        {
-            // Logic to handle when a client disconnects from the hub
-            return base.OnDisconnectedAsync(exception);
-        }
+        
+
+        
+
+        
+
+        
     }
 }

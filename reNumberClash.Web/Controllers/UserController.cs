@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using reNumberClash.Web.Models;
+using Microsoft.AspNetCore.SignalR;
+using reNumberClash.Hubs;
+using Microsoft.AspNetCore.SignalR;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace reNumberClash.Web.Controllers
 {
@@ -13,10 +18,12 @@ namespace reNumberClash.Web.Controllers
 public class UserController : ControllerBase
 {
     private readonly DatabaseContext _context;
+    private readonly IHubContext<GameHub> _hubContext;
 
-    public UserController(DatabaseContext context)
+    public UserController(DatabaseContext context , IHubContext<GameHub> hubContext)
     {
         _context = context;
+        _hubContext = hubContext;
     }
 
     // GET: api/Users
@@ -65,7 +72,7 @@ public class UserController : ControllerBase
         {
             return BadRequest("Invalid username");
         }
-
+        await _hubContext.Clients.All.SendAsync("SendUsername", request.Username);
         // You may generate and return a token here if using JWT
         return Ok(user);
     }
