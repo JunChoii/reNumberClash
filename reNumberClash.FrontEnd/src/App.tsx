@@ -28,7 +28,23 @@ export default function App({ username }: AppProps) {
 
   // Function to generate random number between 1 and 10
   const generateRandomNumber = () => Math.floor(Math.random() * 10) + 1;
-  const [opponentUsername, setOpponentUsername] = useState("Opponent");
+  const [opponentUsername, setOpponentUsername] = useState(
+    "Waiting for Opponent..."
+  );
+
+  useEffect(() => {
+    if (connection) {
+      connection.on("ReceiveUserCards", (card1: number, card2: number) => {
+        setUserCardSending1(card1);
+        setUserCardSending2(card2);
+        console.log(card1, card2);
+      });
+    }
+  });
+
+  const [userCardSending1, setUserCardSending1] = useState(0);
+  const [userCardSending2, setUserCardSending2] = useState(0);
+
   // State to manage user's cards and the number of times "Get new numbers" button has been clicked
   const [userCard1, setUserCard1] = useState(generateRandomNumber());
   const [userCard2, setUserCard2] = useState(generateRandomNumber());
@@ -57,6 +73,10 @@ export default function App({ username }: AppProps) {
   };
 
   const userCombination = calculateCombination(userCard1, userCard2);
+  const finalCombination = calculateCombination(
+    userCardSending1,
+    userCardSending2
+  );
 
   const compareCombination = (combination1: string): string => {
     // Logic for comparing combinations
@@ -68,8 +88,6 @@ export default function App({ username }: AppProps) {
 
   async function handleSubmit(event: any) {
     event.preventDefault();
-    console.log("this is the event: ");
-    console.log(event);
 
     await fetch("http://localhost:5173/api/game", {
       method: "POST",
@@ -79,6 +97,8 @@ export default function App({ username }: AppProps) {
       body: JSON.stringify({
         userCard1: userCard1,
         userCard2: userCard2,
+        userCardSending1: userCardSending1,
+        userCardSending2: userCardSending2,
       }),
     })
       .then((response) => response.json())
@@ -148,7 +168,9 @@ export default function App({ username }: AppProps) {
               <Card>
                 <CardHeader className="flex flex-row items-center gap-4">
                   <div className="flex flex-col items-center">
-                    <CardTitle className="text-2xl">{opponentUsername}</CardTitle>
+                    <CardTitle className="text-2xl">
+                      {opponentUsername}
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center">
@@ -164,8 +186,10 @@ export default function App({ username }: AppProps) {
             </div>
           </div>
           <div className="flex flex-col items-center gap-2 mt-6">
+            <div className="text-lg font-semibold">Result</div>
+            <div className="text-3xl font-bold">{}</div>
             <Button size="lg">New Game</Button>
-            <div className="mt-4 text-lg font-semibold">{result}</div>
+            <div className="mt-4 text-lg font-semibold"></div>
           </div>
         </div>
       </main>

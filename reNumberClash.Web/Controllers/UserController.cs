@@ -73,7 +73,6 @@ public class UserController : ControllerBase
             return BadRequest("Invalid username");
         }
         await _hubContext.Clients.All.SendAsync("SendUsername", request.Username);
-        // You may generate and return a token here if using JWT
         return Ok(user);
     }
 
