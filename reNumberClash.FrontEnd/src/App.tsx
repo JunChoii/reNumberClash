@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  Card,
-} from "@/components/ui/card";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
+import { HubConnectionBuilder } from "@microsoft/signalr";
 import useSignalR from "./useSignalR";
 
 interface AppProps {
@@ -18,10 +12,8 @@ interface AppProps {
 export default function App({ username }: AppProps) {
   const { connection } = useSignalR("/r/gamehub");
 
-  const [opponentUsername, setOpponentUsername] = useState(
-    "Waiting for Opponent..."
-  );
-  
+  const [opponentUsername, setOpponentUsername] = useState("No one");
+
   const [userGetNewNumbersCount, setUserGetNewNumbersCount] = useState(0);
   const [userCardSending1, setUserCardSending1] = useState<number | null>(null);
   const [userCardSending2, setUserCardSending2] = useState<number | null>(null);
@@ -38,6 +30,12 @@ export default function App({ username }: AppProps) {
         console.log(card1, card2);
       });
     }
+
+    return () => {
+      if (connection) {
+        connection.off("ReceiveUserCards");
+      }
+    };
   }, [connection]);
 
   const generateRandomNumber = () => Math.floor(Math.random() * 10) + 1;
@@ -54,6 +52,7 @@ export default function App({ username }: AppProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    // const username = event.target.username.value;
 
     try {
       const response = await fetch("http://localhost:5173/api/game", {
@@ -64,6 +63,7 @@ export default function App({ username }: AppProps) {
         body: JSON.stringify({
           userCard1,
           userCard2,
+          // username,
         }),
       });
 
@@ -156,32 +156,46 @@ export default function App({ username }: AppProps) {
                   <input
                     className="btn bg-[black] text-white px-5 py-2 rounded-md cursor-pointer w-full"
                     type="submit"
-                    value="Ready"
+                    value="Send"
                   />
                 </form>
               </div>
             </div>
             {/* Player 2 card */}
             <div className="flex flex-col gap-4">
-              <Card>
+              <Card className="h-1/2">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <div className="flex flex-col items-center">
-                    <CardTitle className="text-2xl">
-                      {opponentUsername}
+                    <CardTitle className="text-xl">You sent:</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex justify-center items-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="text-4xl font-bold">{userCard1}</div>
+                    <div className="text-4xl font-bold">{userCard2}</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="h-1/2">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="flex flex-col items-center">
+                    <CardTitle className="text-xl">
+                      {opponentUsername} sent:
                     </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="text-9xl font-bold">
-                      {userCardSending1 ?? "?"}
+                    <div className="text-4xl font-bold">
+                      {userCardSending1 !== null ? userCardSending1 : ""}
                     </div>
-                    <div className="text-9xl font-bold">
-                      {userCardSending2 ?? "?"}
+                    <div className="text-4xl font-bold">
+                      {userCardSending2 !== null ? userCardSending2 : ""}
                     </div>
                   </div>
                 </CardContent>
               </Card>
+
               <div className="flex flex-col gap-4">
                 {/* <Button>Ready</Button> */}
               </div>

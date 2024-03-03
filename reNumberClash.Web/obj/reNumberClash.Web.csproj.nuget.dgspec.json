@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj": {}
+    "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj": {
+    "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
+        "projectUniqueName": "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
         "projectName": "reNumberClash.Web",
-        "projectPath": "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
+        "projectPath": "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
         "packagesPath": "C:\\Users\\junab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\obj\\",
+        "outputPath": "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\junab\\AppData\\Roaming\\NuGet\\NuGet.Config",

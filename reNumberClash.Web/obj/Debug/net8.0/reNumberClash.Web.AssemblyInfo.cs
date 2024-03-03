@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("reNumberClash.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c18b4862d4c7096ec8aa6a47a3ec50419bb7a86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd62ea0bb326b0e316d14f72307482bc97cd58eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("reNumberClash.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("reNumberClash.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
