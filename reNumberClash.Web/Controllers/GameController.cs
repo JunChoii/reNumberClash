@@ -32,7 +32,7 @@ namespace reNumberClash.Web.Controllers
         {
             var userCombination = CalculateCombination(userCards.UserCard1, userCards.UserCard2);
 
-            await _hubContext.Clients.All.SendAsync("ReceiveUserCards", userCards);
+            await _hubContext.Clients.All.SendAsync("ReceiveUserCards", userCards.UserCard1, userCards.UserCard2);
 
             return Ok(userCombination);
         }

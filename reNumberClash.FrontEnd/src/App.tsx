@@ -18,39 +18,32 @@ interface AppProps {
 export default function App({ username }: AppProps) {
   const { connection } = useSignalR("/r/gamehub");
 
+  const [opponentUsername, setOpponentUsername] = useState(
+    "Waiting for Opponent..."
+  );
+  
+  const [userGetNewNumbersCount, setUserGetNewNumbersCount] = useState(0);
+  const [userCardSending1, setUserCardSending1] = useState<number | null>(null);
+  const [userCardSending2, setUserCardSending2] = useState<number | null>(null);
+
   useEffect(() => {
     if (connection) {
       connection.on("SendUsername", (message: string) => {
         setOpponentUsername(message);
       });
-    }
-  }, [connection]);
 
-  // Function to generate random number between 1 and 10
-  const generateRandomNumber = () => Math.floor(Math.random() * 10) + 1;
-  const [opponentUsername, setOpponentUsername] = useState(
-    "Waiting for Opponent..."
-  );
-
-  useEffect(() => {
-    if (connection) {
       connection.on("ReceiveUserCards", (card1: number, card2: number) => {
         setUserCardSending1(card1);
         setUserCardSending2(card2);
         console.log(card1, card2);
       });
     }
-  });
+  }, [connection]);
 
-  const [userCardSending1, setUserCardSending1] = useState(0);
-  const [userCardSending2, setUserCardSending2] = useState(0);
-
-  // State to manage user's cards and the number of times "Get new numbers" button has been clicked
+  const generateRandomNumber = () => Math.floor(Math.random() * 10) + 1;
   const [userCard1, setUserCard1] = useState(generateRandomNumber());
   const [userCard2, setUserCard2] = useState(generateRandomNumber());
-  const [userGetNewNumbersCount, setUserGetNewNumbersCount] = useState(0);
 
-  // Function to generate new numbers for the user
   const handleGetNewUserNumbers = () => {
     if (userGetNewNumbersCount < 3) {
       setUserCard1(generateRandomNumber());
@@ -59,7 +52,36 @@ export default function App({ username }: AppProps) {
     }
   };
 
-  // Game logic functions
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5173/api/game", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userCard1,
+          userCard2,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      setUserCardSending1(data.userCardSending1);
+      setUserCardSending2(data.userCardSending2);
+
+      console.log("Success:", data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const calculateCombination = (card1: number, card2: number): string => {
     if (card1 === card2) {
       return `${card1} Tankers`;
@@ -74,8 +96,8 @@ export default function App({ username }: AppProps) {
 
   const userCombination = calculateCombination(userCard1, userCard2);
   const finalCombination = calculateCombination(
-    userCardSending1,
-    userCardSending2
+    userCardSending1 || 0,
+    userCardSending2 || 0
   );
 
   const compareCombination = (combination1: string): string => {
@@ -85,30 +107,6 @@ export default function App({ username }: AppProps) {
   };
 
   const result = compareCombination(userCombination);
-
-  async function handleSubmit(event: any) {
-    event.preventDefault();
-
-    await fetch("http://localhost:5173/api/game", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userCard1: userCard1,
-        userCard2: userCard2,
-        userCardSending1: userCardSending1,
-        userCardSending2: userCardSending2,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -175,8 +173,12 @@ export default function App({ username }: AppProps) {
                 </CardHeader>
                 <CardContent className="flex justify-center items-center">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="text-9xl font-bold">?</div>
-                    <div className="text-9xl font-bold">?</div>
+                    <div className="text-9xl font-bold">
+                      {userCardSending1 ?? "?"}
+                    </div>
+                    <div className="text-9xl font-bold">
+                      {userCardSending2 ?? "?"}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -187,9 +189,9 @@ export default function App({ username }: AppProps) {
           </div>
           <div className="flex flex-col items-center gap-2 mt-6">
             <div className="text-lg font-semibold">Result</div>
-            <div className="text-3xl font-bold">{}</div>
+            <div className="text-3xl font-bold">{result}</div>
             <Button size="lg">New Game</Button>
-            <div className="mt-4 text-lg font-semibold"></div>
+            <div className="mt-4 text-lg font-semibold">{finalCombination}</div>
           </div>
         </div>
       </main>
