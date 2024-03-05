@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7LwgeNhZQ3Q7v1HLEHiZo94W1lol+pc93LF7HLJg/sHNSfUM7sEv6S28WYkBJ/LNchxSphN0pa2CDVMHBNfEyA==",
+  "dgSpecHash": "hRx878DfQ0+vOmCdexOLclnX8i5thUNCYgu009vat+NdwUrDZsjiOOI+yuhglztIpfnMluaiZuhvz1SyzvZ7jg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\junab\\OneDrive\\desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
+  "projectFilePath": "C:\\Users\\junab\\OneDrive\\Desktop\\Programming\\BCIT Term 4\\SaMNet\\Second Quater\\SignalR\\reNumberClash\\reNumberClash.Web\\reNumberClash.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\junab\\.nuget\\packages\\dotnetenv\\3.0.0\\dotnetenv.3.0.0.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -38,6 +38,8 @@
     "C:\\Users\\junab\\.nuget\\packages\\mysqlconnector\\2.3.1\\mysqlconnector.2.3.1.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\junab\\.nuget\\packages\\npgsql\\8.0.2\\npgsql.8.0.2.nupkg.sha512",
+    "C:\\Users\\junab\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.2\\npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.0-beta.2\\pomelo.entityframeworkcore.mysql.8.0.0-beta.2.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\junab\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",

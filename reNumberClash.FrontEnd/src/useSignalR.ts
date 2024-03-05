@@ -28,7 +28,7 @@ export default function useSignalR(url: any) {
       .catch((error) => {
         console.log("signal error", error);
       });
-
+//@ts-ignore
     connection.onclose((error) => {
       if (canceled) {
         return;
@@ -36,7 +36,7 @@ export default function useSignalR(url: any) {
       console.log("signal closed");
       setConnection(undefined);
     });
-
+//@ts-ignore
     connection.onreconnecting((error) => {
       if (canceled) {
         return;
@@ -44,7 +44,7 @@ export default function useSignalR(url: any) {
       console.log("signal reconnecting");
       setConnection(undefined);
     });
-
+//@ts-ignore
     connection.onreconnected((error) => {
       if (canceled) {
         return;

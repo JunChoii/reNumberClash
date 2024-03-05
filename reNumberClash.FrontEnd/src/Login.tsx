@@ -1,5 +1,4 @@
 // Login.js
-import React, { useState } from "react";
 
 function Login({ onLogin }: any) {
   const handleSubmit = async (e: any) => {
@@ -15,7 +14,6 @@ function Login({ onLogin }: any) {
     });
 
     if (response.status === 200) {
-      // Call the onLogin function passed from the parent component
       onLogin(username); // Pass the username to onLogin
     } else if (response.status === 400) {
       alert("Invalid Username.");

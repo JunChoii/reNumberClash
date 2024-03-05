@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
-import { HubConnectionBuilder } from "@microsoft/signalr";
+// import { HubConnectionBuilder } from "@microsoft/signalr";
 import useSignalR from "./useSignalR";
 
 interface AppProps {
@@ -100,6 +100,7 @@ export default function App({ username }: AppProps) {
     userCardSending2 || 0
   );
 
+//@ts-ignore
   const compareCombination = (combination1: string): string => {
     // Logic for comparing combinations
 

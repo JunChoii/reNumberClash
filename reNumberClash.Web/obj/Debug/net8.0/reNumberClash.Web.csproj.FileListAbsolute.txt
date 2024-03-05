@@ -107,3 +107,6 @@ C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\Sig
 C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\obj\Debug\net8.0\reNumberClash.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\obj\Debug\net8.0\reNumberClash.Web.sourcelink.json
 C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\bin\Debug\net8.0\reNumberClash.Web.staticwebassets.runtime.json
+C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\bin\Debug\net8.0\Npgsql.dll
+C:\Users\junab\OneDrive\Desktop\Programming\BCIT Term 4\SaMNet\Second Quater\SignalR\reNumberClash\reNumberClash.Web\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

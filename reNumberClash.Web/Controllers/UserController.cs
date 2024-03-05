@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using reNumberClash.Web.Models;
 using Microsoft.AspNetCore.SignalR;
 using reNumberClash.Hubs;
-using Microsoft.AspNetCore.SignalR;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -50,6 +49,21 @@ public class UserController : ControllerBase
     // POST: api/Users
     [HttpPost]
     public async Task<ActionResult<User>> PostUser([FromBody] User user)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+    }
+
+    //POST: api/Users/create
+    [HttpPost("create")]
+    public async Task<ActionResult<User>> CreateUser(User user)
     {
         if (!ModelState.IsValid)
         {
