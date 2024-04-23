@@ -11,7 +11,7 @@ _Jan 2024 - Feb 2024_
 ## Try the app:
 💥 The project is still in progress💥 
 
-❗Try the username **jun** and **tony** to log in❗
+❗Username **jun** and **tony** to log in❗
 
 https://renumberclash-web-green-dawn-9736.fly.dev/
 
